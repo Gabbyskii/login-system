@@ -7,28 +7,19 @@ import java.util.List;
 
 public class UserFactory {
 
-    private List<User> users;
+    public static List<User> createUsers() {
+        List<User> users = new ArrayList<>();
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
-    }
-
-
-    public List<User> createUsers() {
-        users.add(new User("gabski", "1234"));
-        users.add(new User("pablo", "4321"));
-        users.add(new User("lucia", "6543"));
-        users.add(new User("jason", "1234"));
-        users.add(new User("brian", "4567"));
-        users.add(new User("cal", "9876"));
-        users.add(new User("alina", "1234"));
-        users.add(new User("lars", "6543"));;
-        users.add(new User("diana", "4321"));
-        users.add(new User("susu", "2345"));
+        users.add(new User("gabski", "Kode1234"));
+        users.add(new User("pablo", "Kode4321"));
+        users.add(new User("lucia", "Kode6543"));
+        users.add(new User("jason", "Kode1234"));
+        users.add(new User("brian", "Kode4567"));
+        users.add(new User("cal", "Kode9876"));
+        users.add(new User("alina", "Kode1234"));
+        users.add(new User("lars", "Kode6543"));
+        users.add(new User("diana", "Kode4321"));
+        users.add(new User("susu", "Kode2345"));
 
         return users;
     }
