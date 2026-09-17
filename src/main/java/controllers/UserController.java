@@ -56,15 +56,23 @@ public class UserController {
 
         User user = userService.getUser(username);
 
-        ctx.result("Bruger fundet: " + user.getUsername() +
-                ", password: " + user.getPassword());
+        if (user != null) {
+            ctx.attribute("user", user);
+            ctx.render("/templates/userinfo.html");
+
+            //ctx.result("Bruger fundet: " + user.getUsername()
+            // + ", password: " + user.getPassword());
+        }
+        else {
+            ctx.status(404);
+            ctx.result("Bruger ikke fundet!");
         }
 
+    }
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
