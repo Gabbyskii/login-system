@@ -1,13 +1,21 @@
 import entities.User;
 import factories.UserFactory;
 import services.UserService;
+import io.javalin.Javalin;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        try {
+        var app = Javalin.create(config -> {
+            config.staticFiles.add("/public");
+        }).start(7070);
+
+
+
+
+       /* try {
             User u = new User("gabski", "1234");
             System.out.println("Oprettet bruger: " + u.getUsername());
 
@@ -39,7 +47,10 @@ public class Main {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
-        }
+        }*/
+
+
+
 
     }
 }
