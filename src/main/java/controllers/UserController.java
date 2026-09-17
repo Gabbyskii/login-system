@@ -12,6 +12,9 @@ public class UserController {
         config.routes.post("/login", ctx-> login(ctx));
         config.routes.get("/login", ctx-> ctx.redirect("/login.html"));
 
+        config.routes.get("/finduser", ctx-> findUser(ctx));
+
+
         config.routes.post("/createuser", ctx-> createUser(ctx));
         config.routes.get("/createuser", ctx-> ctx.redirect("/createUser.html"));
     }
@@ -48,4 +51,20 @@ public class UserController {
     }
 
 
+    public static void findUser(Context ctx){
+        String username = ctx.queryParam("username");
+
+        User user = userService.getUser(username);
+
+        ctx.result("Bruger fundet: " + user.getUsername() +
+                ", password: " + user.getPassword());
+        }
+
 }
+
+
+
+
+
+
+
