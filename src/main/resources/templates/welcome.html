@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mit bibliotek</title>
+    <link rel="stylesheet" href="/style.css">
 
 </head>
 
@@ -18,10 +19,25 @@
 
         <h1>
             Velkommen,
-            <span th:text="${username}">bruger</span>!
+            <span th:text="${session.user.username}">bruger</span>!
         </h1>
 
+
+        <div class="book" th:each="loan : ${session.user.loans}">
+
+            <h2 th:text="${loan.book.title}">
+                Grapes of Wrath
+            </h2>
+
+            <p th:text="${loan.book.author.name}">
+                John Steinbeck
+            </p>
+
+        </div>
+
     </div>
+
+
 </main>
 
 </body>

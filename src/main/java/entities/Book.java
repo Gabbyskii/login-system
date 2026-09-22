@@ -36,12 +36,5 @@ public class Book {
         this.author = author;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", author=" + (author != null ? author.getName() : "unknown") +
-                '}';
-    }
+
 }

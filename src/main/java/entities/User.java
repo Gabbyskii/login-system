@@ -30,11 +30,5 @@ public class User {
         loans.add(loan);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", loans=" + loans.size() +
-                '}';
-    }
+
 }
