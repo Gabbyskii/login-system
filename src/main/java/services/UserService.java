@@ -1,5 +1,6 @@
 package services;
 
+import entities.Library;
 import entities.User;
 import factories.UserFactory;
 
@@ -7,28 +8,15 @@ import java.util.List;
 
 public class UserService {
 
-    private List<User> users;
+   private Library library = new Library();
 
     public UserService() {
-        this.users = UserFactory.createUsers();
+
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 
     public void addUser(User user){
-        if (user == null){
-            System.out.println("no users added");
-        }
-
-        users.add(user);
-        System.out.println(user + "added!");
-
+        library.addUser(user);
     }
 
     public User getUser(String username){
@@ -36,7 +24,7 @@ public class UserService {
             System.out.println("no username found!");
         }
 
-        for (User us: users){
+        for (User us: library.getUsers()){
             if (us.getUsername().equals(username)){
                 return us;
             }
@@ -50,7 +38,7 @@ public class UserService {
             return null;
         }
 
-        for (User login: users){
+        for (User login: library.getUsers()){
             if (login.getUsername().equals(username) &&
                     login.getPassword().equals(password)){
                 System.out.println("Login succesful!");
@@ -70,14 +58,14 @@ public class UserService {
            throw new IllegalArgumentException("Password must be 8-15 characters!");
         }
 
-        for (User us: users) {
+        for (User us: library.getUsers()) {
             if (us.getUsername().equals(username)) {
                 return null;
             }
         }
 
         User user = new User(username,password);
-        users.add(user);
+        library.getUsers().add(user);
 
         return user;
 
