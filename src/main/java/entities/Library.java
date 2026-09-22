@@ -1,7 +1,12 @@
 package entities;
 
+import factories.BookFactory;
+import factories.UserFactory;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Library {
     private List<Book> books;
@@ -9,9 +14,16 @@ public class Library {
     private List<Loan> loans;
 
     public Library() {
-        books = new ArrayList<>();
-        users = new ArrayList<>();
-        loans = new ArrayList<>();
+        books = BookFactory.createBooks();
+        users = UserFactory.createUsers();
+
+        Random random = new Random();
+        for (User user: users){
+          for (int i = 0; i < 10; i++){
+            addLoan(new Loan(user, books.get(random.nextInt(books.size()-1)), LocalDate.now()));
+            }
+        }
+
     }
 
     public List<Book> getBooks() {
