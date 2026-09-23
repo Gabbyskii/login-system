@@ -4,75 +4,56 @@ import entities.Library;
 import entities.User;
 import factories.UserFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
 
-   private Library library = new Library();
+    private Library library = Library.getInstance();
 
-    public UserService() {
-
-    }
-
-
-    public void addUser(User user){
+    public void addUser(User user) {
         library.addUser(user);
     }
 
-    public User getUser(String username){
-        if (username == null){
-            System.out.println("no username found!");
-        }
+    public User getUser(String username) {
 
-        for (User us: library.getUsers()){
-            if (us.getUsername().equals(username)){
-                return us;
+        for (User user : library.getUsers()) {
+            if (user.getUsername().equals(username)) {
+                return user;
             }
         }
+
         return null;
     }
 
-    public User login(String username, String password){
-        if (username == null && password == null){
-            System.out.println("no login!");
+    public User login(String username, String password) {
+
+        User user = getUser(username);
+
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+
+        return null;
+    }
+
+    public User createUser(String username, String password, String email) {
+
+        if (username == null || username.isBlank()) {
             return null;
         }
 
-        for (User login: library.getUsers()){
-            if (login.getUsername().equals(username) &&
-                    login.getPassword().equals(password)){
-                System.out.println("Login succesful!");
-                return login;
-            }
+        if (password == null || password.isBlank()) {
+            return null;
         }
 
-        return null;
-    }
-
-    public User createUser(String username, String password){
-        if (username == null || password == null){
-            System.out.println("no user created!");
+        if (getUser(username) != null) {
+            return null;
         }
 
-        if (!validatePassword(password)) {
-           throw new IllegalArgumentException("Password must be 8-15 characters!");
-        }
-
-        for (User us: library.getUsers()) {
-            if (us.getUsername().equals(username)) {
-                return null;
-            }
-        }
-
-        User user = new User(username,password);
-        library.getUsers().add(user);
+        User user = new User(username, password, email);
+        addUser(user);
 
         return user;
-
     }
-    public boolean validatePassword(String password) {
-        return password.length() >= 8 && password.length() <= 15;
-    }
-
-
 }

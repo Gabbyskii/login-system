@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mit bibliotek | My Library</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">📚 My Library</div>
+</header>
+
+<main>
+    <div th:replace="~{/fragments :: navigation}"></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Forfatter</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="book : ${books}" th:if="${!session.user.isChild || book.isChildrensBook}">
+            <td th:text="${book.title}">Titel</td>
+            <td th:text="${book.author.name}">Forfatter</td>
+            <td th:text="${book.isbn}">ISBN</td>
+            <td>
+                <form action="/cart/add" method="post">
+                    <input type="hidden"
+                           name="isbn"
+                           th:value="${book.isbn}">
+                    <button type="submit">Læg i lånekurv</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</main>
+
+</body>
+</html>

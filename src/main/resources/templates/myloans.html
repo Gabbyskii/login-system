@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine lån | My Library</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">📚 My Library</div>
+</header>
+
+<main>
+    <div class="card">
+
+        <h1>Mine lån</h1>
+
+        <p>
+            Du er logget ind som:
+            <strong th:text="${session.user.username}">bruger</strong>
+        </p>
+
+        <div class="books">
+
+            <div class="book" th:each="loan : ${session.user.loans}">
+
+                <h2 th:text="${loan.book.title}">
+                    Grapes of Wrath
+                </h2>
+
+                <p th:text="${loan.book.author.name}">
+                    John Steinbeck
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a class="button" href="/welcome">Tilbage</a>
+
+    </div>
+</main>
+
+</body>
+</html>

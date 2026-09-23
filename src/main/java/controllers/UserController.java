@@ -10,17 +10,18 @@ public class UserController {
 
     public static void setRoutes(JavalinConfig config){
         config.routes.post("/login", ctx -> login(ctx));
-        config.routes.get("/finduser", ctx -> findUser(ctx));
-        config.routes.post("/createUser", ctx -> createUser(ctx));
+        config.routes.post("/createuser", ctx -> createUser(ctx));
+        config.routes.get("/welcome", ctx -> ctx.render("welcome"));
     }
 
     public static void createUser(Context ctx){
         String username = ctx.formParam("username");
         String password = ctx.formParam("password");
+        String email = ctx.formParam("email");
 
-        User user = userService.createUser(username, password);
+        User user = userService.createUser(username, password, email);
         if(user != null){
-            ctx.attribute("username", user.getUsername());
+            ctx.sessionAttribute("user", user);
             ctx.render("welcome");
         }
         else{
@@ -28,7 +29,6 @@ public class UserController {
             ctx.result("Brugeren kunne ikke oprettes");
         }
     }
-
 
     public static void login(Context ctx){
         String username = ctx.formParam("username");
@@ -44,20 +44,6 @@ public class UserController {
             ctx.result("Brugeren findes ikke");
         }
 
-    }
-
-
-    public static void findUser(Context ctx){
-        String username = ctx.queryParam("username");
-        User user = userService.getUser(username);
-        if(user != null){
-            ctx.attribute("user", user);
-            ctx.render("userinfo");
-        }
-        else{
-            ctx.status(404);
-            ctx.result("Brugeren findes ikke");
-        }
     }
 
 

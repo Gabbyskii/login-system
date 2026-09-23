@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mit bibliotek | My Library</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">📚 My Library</div>
+</header>
+
+<main>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Brugernavn</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.username}">Brugernavn</td>
+            <td th:text="${user.email}">Email</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</main>
+
+</body>
+</html>

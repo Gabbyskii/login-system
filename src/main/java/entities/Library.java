@@ -11,19 +11,27 @@ import java.util.Random;
 public class Library {
     private List<Book> books;
     private List<User> users;
-    private List<Loan> loans;
+    private List<Loan> loans = new ArrayList<>();
+    private static Library library = new Library();
 
-    public Library() {
+    private Library() {
         books = BookFactory.createBooks();
+        books.add(new Book("Mathilda", "1234", new Author("Roald Dahl"), true));
         users = UserFactory.createUsers();
-
         Random random = new Random();
-        for (User user: users){
-          for (int i = 0; i < 10; i++){
-            addLoan(new Loan(user, books.get(random.nextInt(books.size()-1)), LocalDate.now()));
+        for(User user:users){
+            for(int i=0; i<10; i++){
+                addLoan(new Loan(user, books.get(random.nextInt(books.size()-1)), LocalDate.now()));
+
             }
         }
+        User admin = new User("admin", "adminadmin", "admin@admin");
+        admin.setAdmin(true);
+        users.add(admin);
+    }
 
+    public static Library getInstance(){
+        return library;
     }
 
     public List<Book> getBooks() {
@@ -50,5 +58,4 @@ public class Library {
         loans.add(loan);
         loan.getUser().addLoan(loan);
     }
-
 }

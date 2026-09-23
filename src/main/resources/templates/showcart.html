@@ -13,13 +13,12 @@
     <div class="logo">📚 My Library</div>
 </header>
 
-<h1>
-    Lånerinfo
-</h1>
-<p>
-    Navn: <span th:text="${user.username}">navn</span>
-    Mailadresse: <span th:text="${user.email}">navn</span>
-</p>
+<div th:each="book : ${session.user.cart}">
+    <h2 th:text="${book.title}">Bogtitel</h2>
+    <p th:text="${book.author.name}">Forfatter</p>
+</div>
+
+<a class="button" href="/loanbooks" >Lån alle</a>
 
 </body>
 </html>
