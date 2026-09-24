@@ -10,10 +10,10 @@ public class BookController {
     private static BookService bookService = new BookService();
 
     public static void setRoutes(JavalinConfig config){
-        config.routes.get("/allbooks", ctx -> showAllBooks(ctx));
-        config.routes.get("books", ctx -> getBooks(ctx));
-        config.routes.get("booksbyauthor", ctx -> getBooksByAuthor(ctx));
-        config.routes.get("booksbytitle", ctx -> getBooksByTitle(ctx));
+        config.routes.get("/books", ctx -> showAllBooks(ctx));
+        config.routes.get("/getbooks", ctx -> getBooks(ctx));
+        config.routes.get("/booksbyauthor", ctx -> getBooksByAuthor(ctx));
+        config.routes.get("/booksbytitle", ctx -> getBooksByTitle(ctx));
     }
 
     public static void showAllBooks(Context ctx){

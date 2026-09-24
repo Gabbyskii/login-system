@@ -17,7 +17,6 @@ public class BookService {
         library.addLoan(new Loan(user, book, date));
     }
 
-
     public List<Book> findByAuthor(String author){
 
         return library.getBooks().stream().filter(book -> book.getAuthor().getName().equals(author)).toList();

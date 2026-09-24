@@ -49,7 +49,7 @@ public class BookFactory {
                 "The Winter Garden"
         };
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 99; i++) {
 
             String title = titles[i % titles.length] + " " + (i + 1);
             Author author = authors[i % authors.length];

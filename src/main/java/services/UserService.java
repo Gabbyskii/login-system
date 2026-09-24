@@ -43,7 +43,7 @@ public class UserService {
             return null;
         }
 
-        if (password == null || password.isBlank()) {
+        if (password == null || password.isBlank() || !validatePassword(password)) {
             return null;
         }
 
@@ -56,4 +56,12 @@ public class UserService {
 
         return user;
     }
+
+    public boolean validatePassword(String psw){
+        if (psw.length() < 8 || psw.length() > 15)
+            return false;
+        else
+            return true;
+    }
+
 }

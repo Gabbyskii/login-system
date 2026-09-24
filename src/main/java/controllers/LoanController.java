@@ -36,7 +36,7 @@ public class LoanController {
 
     public static void putInCart(Context ctx){
         User user = ctx.sessionAttribute("user");
-        Book book = bookService.findByISBN(ctx.formParam("isbn"));
+        Book book = bookService.findBookByISBN(ctx.formParam("isbn"));
         if (book != null) {
             user.addToCart(book);
             ctx.render("books");
