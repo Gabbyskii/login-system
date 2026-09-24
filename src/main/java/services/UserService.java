@@ -2,6 +2,7 @@ package services;
 
 import entities.Library;
 import entities.User;
+import exceptions.IllegalUserDataException;
 import factories.UserFactory;
 
 import java.util.ArrayList;
@@ -37,14 +38,14 @@ public class UserService {
         return null;
     }
 
-    public User createUser(String username, String password, String email) {
+    public User createUser(String username, String password, String email) throws IllegalUserDataException {
 
         if (username == null || username.isBlank()) {
-            return null;
+            throw new IllegalUserDataException("Brugernavn må ikke være tomt eller blankt!");
         }
 
         if (password == null || password.isBlank() || !validatePassword(password)) {
-            return null;
+            throw new IllegalUserDataException("Password må ikke være tomt eller blankt!");
         }
 
         if (getUser(username) != null) {
