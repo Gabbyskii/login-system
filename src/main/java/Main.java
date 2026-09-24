@@ -3,7 +3,7 @@ import controllers.UserController;
 import io.javalin.rendering.template.JavalinThymeleaf;
 import io.javalin.Javalin;
 
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {

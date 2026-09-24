@@ -27,15 +27,22 @@ public class BookService {
         return library.getBooks().stream().filter(book -> book.getTitle().contains(title)).toList();
     }
 
-    public Book findByISBN(String isbn){
+
+    public Book findBookByISBN(String isbn){
         for(Book book: library.getBooks()){
-            if (book.getIsbn().equals(isbn))
+            if(book.getIsbn().equals(isbn))
                 return book;
         }
         return null;
     }
 
+    public List<Book> getAllBooks(){
+        return library.getBooks();
+    }
+
     public List<Book> getBooks() {
         return library.getBooks();
     }
+
+
 }

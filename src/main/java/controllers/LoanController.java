@@ -26,7 +26,7 @@ public class LoanController {
     public static void loanAll(Context ctx){
         User user = ctx.sessionAttribute("user");
         for(Book book:user.getCart()){
-           bookService.loanBook(book, user, LocalDate.now());
+            bookService.loanBook(book, user, LocalDate.now());
         }
     }
 
@@ -47,6 +47,10 @@ public class LoanController {
 
 
 }
+
+
+
+
 
 
 
